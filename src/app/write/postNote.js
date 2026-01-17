@@ -1,18 +1,20 @@
 "use server";
 import { AsyncDatabase } from "promised-sqlite3";
-import { redirect } from "next/navigation";
 
-export default async function updateUsername(formData) {
-  console.log("updateUsername called", formData);
+export default async function postNote(formData) {
+  console.log("postNote called", formData);
 
-  const username = formData.get("username");
-  const id = formData.get("id");
+  const from = formData.get("from_user");
+  const to = formData.get("to_user");
+  const note = formData.get("note");
 
-  if (!username || !id) {
+  if (!from || !to || !note) {
     throw new Error("All fields are required");
   }
 
   const db = await AsyncDatabase.open("./notes.db");
-  await db.run("UPDATE users SET name = ? WHERE id = ?", [username, id]);
-  redirect("/");
+  await db.run(
+    "INSERT INTO notes (from_user, to_user, note) VALUES (?, ?, ?)",
+    [from, to, note]
+  );
 }
