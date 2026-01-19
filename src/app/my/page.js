@@ -25,7 +25,7 @@ export default async function MyNotes() {
     <div>
       <h1>My Notes</h1>
       <fieldset>
-        <legend>Notes To You</legend>
+        <legend>Notes Received by You</legend>
         <table>
           <thead>
             <tr>
@@ -46,7 +46,7 @@ export default async function MyNotes() {
         </table>
       </fieldset>
       <fieldset>
-        <legend>Notes From You</legend>
+        <legend>Notes Sent by You</legend>
         <table>
           <thead>
             <tr>
